@@ -1,4 +1,1 @@
-.cpuprofile
 node_modules
-config.json
-.env
