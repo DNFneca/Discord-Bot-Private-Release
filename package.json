@@ -1,0 +1,30 @@
+{
+    "dependencies": {
+        "@discordjs/builders": "^0.12.0",
+        "@discordjs/rest": "^0.3.0",
+        "ascii-table": "^0.0.9",
+        "discord-api-types": "^0.26.1",
+        "discord.js": "^13.6.0",
+        "dotenv": "^14.3.2",
+        "mongodb": "^4.3.1",
+        "mongoose": "^6.2.1"
+    },
+    "name": "discord-bot",
+    "version": "0.0.0",
+    "description": "Test of the basic discord bot",
+    "main": "index.js",
+    "scripts": {
+        "test": "node index.js",
+        "start": "node index.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/DNFneca/DiscordBot.git"
+    },
+    "author": "DNFneca#",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/DNFneca/DiscordBot/issues"
+    },
+    "homepage": "https://github.com/DNFneca/DiscordBot#readme"
+}
