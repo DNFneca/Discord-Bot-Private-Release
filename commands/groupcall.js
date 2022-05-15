@@ -15,12 +15,6 @@ module.exports = {
                 .setDescription("type the name of the call")
                 .setRequired(true)
             )
-            .addMentionableOption((option) =>
-                option
-                .setName("users")
-                .setDescription("tag someone")
-                .setRequired(false)
-            )
             .addNumberOption((option) =>
                 option
                 .setName("time")
@@ -35,7 +29,6 @@ module.exports = {
 
         if (interaction.options.getNumber("time") < 0) {
             interaction.reply("time must be greater than 0");
-            return;
         } else if (interaction.options.getNumber("time") > 0 && interaction.options.getNumber("time") <= 86400) {
 
             if (interaction.guild.channels.cache.find(channel => channel.name === "temporary VCs").id === undefined || interaction.guild.channels.cache.find(channel => channel.name === "temporary VCs").id === null) {
@@ -47,8 +40,7 @@ module.exports = {
                     }]
                 })
             }
-            const categoryId = interaction.guild.channels.cache.find(channel => channel.name === "temporary VCs").id
-
+            const categoryId = interaction.guild.channels.cache.find(channel => channel.name === "temporary VCs").id;
 
             await interaction.guild.channels.create(
                 interaction.options.getString("name"), {
@@ -60,6 +52,7 @@ module.exports = {
             const chatName = interaction.guild.channels.cache.find(channel => channel.name === interaction.options.getString("name"))
             const chatIdDelete = interaction.guild.channels.cache.find(channel => channel.name === interaction.options.getString("name")).id
             const fetchedChannel = interaction.guild.channels.cache.get(`${chatIdDelete}`);
+            console.log(`A VC named ${chatName} has been created`);
             // await interaction.reply("hey!");
 
 
@@ -76,15 +69,14 @@ module.exports = {
             // }
             // createVC(interaction);
 
-            return;
+
         } else if (interaction.options.getNumber("time") === null || interaction.options.getNumber("time") === 0) {
             if (interaction.member.voice.channel != null) {
                 if (interaction.guild.channels.cache.find(channel => channel.name === "new VCs") === undefined || interaction.guild.channels.cache.find(channel => channel.name === "temporary VCs") === null) {
                     await interaction.guild.channels.create('new VCs', {
                         type: 'GUILD_CATEGORY',
                         permissionOverwrites: [{
-                            id: interaction.guild.id,
-                            allow: ['VIEW_CHANNEL'],
+                            id: interaction.guild.id
                         }]
                     })
                 }
@@ -101,6 +93,7 @@ module.exports = {
 
                 await interaction.reply(`A VC named ${chatName} has been created, and it will be deleted when everyone leaves`);
                 await interaction.member.voice.setChannel(fetchedChannel);
+                console.log(`A VC named ${chatName} has been created, and it will be deleted when everyone leaves`);
             }
 
         } else if (interaction.member.voice.channel === null && interaction.options.getNumber("time") === 0) {
