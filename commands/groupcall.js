@@ -31,7 +31,7 @@ module.exports = {
             interaction.reply("time must be greater than 0");
         } else if (interaction.options.getNumber("time") > 0 && interaction.options.getNumber("time") <= 86400) {
 
-            if (interaction.guild.channels.cache.find(channel => channel.name === "temporary VCs").id === undefined || interaction.guild.channels.cache.find(channel => channel.name === "temporary VCs").id === null) {
+            if (interaction.guild.channels.cache.find(channel => channel.name === "temporary VCs") === undefined || interaction.guild.channels.cache.find(channel => channel.name === "temporary VCs") === null) {
                 await interaction.guild.channels.create('temporary VCs', {
                     type: 'GUILD_CATEGORY',
                     permissionOverwrites: [{
@@ -40,6 +40,7 @@ module.exports = {
                     }]
                 })
             }
+            //
             const categoryId = interaction.guild.channels.cache.find(channel => channel.name === "temporary VCs").id;
 
             await interaction.guild.channels.create(
